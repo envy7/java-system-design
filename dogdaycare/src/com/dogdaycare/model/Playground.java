@@ -3,15 +3,23 @@ package com.dogdaycare.model;
 import java.util.*;
 
 public class Playground {
-    private final Integer id;
+    private final Integer playgroundId;
     private final Integer capacity;
-    private HashSet<DogSize> allowedDogSizes;
+    private final HashSet<DogSize> allowedDogSizes;
     private final Map<Integer, Dog> dogs = new HashMap<>();
 
-    public Playground(Integer id, Integer capacity, HashSet<DogSize> allowedSizes) {
-        this.id = id;
+    public Playground(Integer playgroundId, Integer capacity, HashSet<DogSize> allowedSizes) {
+        this.playgroundId = playgroundId;
         this.capacity = capacity;
         this.allowedDogSizes = allowedSizes;
+    }
+
+    public Integer getPlaygroundId() {
+        return playgroundId;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
     }
 
     public void allowDogSize(DogSize size) {
@@ -23,7 +31,11 @@ public class Playground {
     }
 
     public boolean isFull() {
-        return dogs.size() >= this.capacity;
+        return getSize() >= this.capacity;
+    }
+
+    public Integer getSize() {
+        return dogs.size();
     }
 
     private boolean passPrerequisites(Dog dog) {
@@ -36,18 +48,24 @@ public class Playground {
             return;
         }
 
-        dogs.put(dog.getId(), dog);
-        System.out.println(dog.getName() + " has been registered in the playground " + this.id.toString());
+        Integer dogId = getSize() + 1;
+        dog.setRegistrationId(dogId);
+        dog.setPlaygroundId(playgroundId);
+        dogs.put(dog.getRegistrationId(), dog);
+        System.out.println(dog.getName() + " has been registered in the playground " + playgroundId.toString());
     }
 
     public void unregisterDog(Dog dog) {
-        dogs.remove(dog.getId());
-        System.out.println(dog.getName() + " has been unregistered from the playground " + this.id.toString());
+        dogs.remove(dog.getRegistrationId());
+        System.out.println(dog.getName() + " has been unregistered from the playground " + playgroundId.toString());
     }
 
     public void displayDogs() {
         dogs.forEach((key, value) -> {
-            System.out.println("Id: " + key + " Name: " + value.getName());
+            System.out.println("====================");
+            System.out.println("Id: " + key);
+            System.out.println("PlaygroundId: " + value.getPlaygroundId());
+            System.out.println("Name: " + value.getName());
             value.bark();
         });
     }

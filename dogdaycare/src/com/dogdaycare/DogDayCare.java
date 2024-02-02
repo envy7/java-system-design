@@ -21,6 +21,15 @@ public class DogDayCare {
         playground.registerDog(dog);
     }
 
+    public void unRegisterDog(Dog dog) {
+        if ( dog.getPlaygroundId() == null ) {
+            System.out.println(dog.getName() + " isn't a registered dog");
+            return;
+        }
+        Playground playground = playgroundManager.getPlayground(dog, dog.getPlaygroundId());
+        playground.unregisterDog(dog);
+    }
+
     public static void main(String[] args) {
         DogDayCare dogDayCare = new DogDayCare();
 
@@ -30,12 +39,12 @@ public class DogDayCare {
         dogDayCare.addPlayground(smallPlayground);
         dogDayCare.addPlayground(bigPlayground);
 
-        Dog smallDog1 = new Pug(1, "Buddy", DogSize.SMALL, true);
-        Dog smallDog2 = new Pug(2, "Daisy", DogSize.SMALL, true);
-        Dog bigDog1 = new Pug(3, "Max", DogSize.LARGE, false); // Not vaccinated
-        Dog smallDog3 = new Husky(4, "Charlie", DogSize.SMALL, true);
-        Dog bigDog2 = new Husky(5, "Bella", DogSize.LARGE, true);
-        Dog bigDog3 = new Husky(6, "Rocky", DogSize.LARGE, true);
+        Dog smallDog1 = new Pug("Buddy", DogSize.SMALL, true);
+        Dog smallDog2 = new Pug("Daisy", DogSize.SMALL, true);
+        Dog smallDog3 = new Husky("Charlie", DogSize.SMALL, true);
+        Dog bigDog1 = new Pug("Max", DogSize.LARGE, false); // Not vaccinated
+        Dog bigDog2 = new Husky("Bella", DogSize.LARGE, true);
+        Dog bigDog3 = new Husky("Rocky", DogSize.LARGE, true);
 
         List<Dog> dogs = new ArrayList<>(List.of(smallDog1, smallDog2, smallDog3, bigDog1, bigDog2, bigDog3));
 
@@ -45,5 +54,9 @@ public class DogDayCare {
 
         smallPlayground.displayDogs();
         bigPlayground.displayDogs();
+
+        for (Dog dog : dogs) {
+            dogDayCare.unRegisterDog(dog);
+        }
     }
 }
