@@ -1,9 +1,9 @@
-package com.unixfilesystem.model;
+package com.filesystem.model;
 
-public abstract class Entry implements UnixEntry {
+public abstract class UnixEntry implements Entry {
     protected String name;
 
-    public Entry(String name) {
+    public UnixEntry(String name) {
         this.name = name;
     }
 

@@ -1,6 +1,6 @@
-package com.unixfilesystem.model;
+package com.filesystem.model;
 
-public interface UnixEntry {
+public interface Entry {
 
     String getName();
 

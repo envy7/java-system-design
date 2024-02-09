@@ -1,6 +1,6 @@
-package com.unixfilesystem.model;
+package com.filesystem.model;
 
-public class File extends Entry {
+public class File extends UnixEntry {
 
     private byte[] content;
 
@@ -27,5 +27,8 @@ public class File extends Entry {
         return content.length;
     }
 
+    public String getExtention() {
+        return this.name.split("\\.")[1];
+    }
 
 }

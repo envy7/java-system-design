@@ -1,25 +1,25 @@
-package com.unixfilesystem.model;
+package com.filesystem.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory extends Entry {
+public class Directory extends UnixEntry {
 
-    private final List<Entry> entries = new ArrayList<>();
+    private final List<UnixEntry> entries = new ArrayList<>();
 
     public Directory(String name) {
         super(name);
     }
 
-    public void addEntry(Entry entry) {
-        entries.add(entry);
+    public void addEntry(UnixEntry unixEntry) {
+        entries.add(unixEntry);
     }
 
     @Override
     public int getSize() {
         int total = 0;
-        for (Entry entry: entries) {
-            total += entry.getSize();
+        for (UnixEntry unixEntry : entries) {
+            total += unixEntry.getSize();
         }
 
         return total;
