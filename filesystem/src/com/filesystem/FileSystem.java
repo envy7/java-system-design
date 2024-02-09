@@ -35,6 +35,7 @@ public class FileSystem {
         FilterParam filterParam = new FilterParam.FilterParamBuilder().name("abc").build();
 
         List<File> filteredFiles = fileSystem.filefilter.search(dir1, filterParam);
+        System.out.println("Filtered files are: ");
         for (File file : filteredFiles) {
             System.out.println(file.getName());
         }

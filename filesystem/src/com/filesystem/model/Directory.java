@@ -15,6 +15,8 @@ public class Directory extends UnixEntry {
         entries.add(unixEntry);
     }
 
+    public List<UnixEntry> getEntries() { return entries; }
+
     @Override
     public int getSize() {
         int total = 0;

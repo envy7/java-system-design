@@ -1,4 +1,7 @@
-package com.filesystem.model;
+package com.filesystem.service;
+
+import com.filesystem.model.File;
+import com.filesystem.model.FilterParam;
 
 public class NameFilter implements IFilter {
     @Override
@@ -6,6 +9,6 @@ public class NameFilter implements IFilter {
         if (filterParam.getName() == null) {
             return true;
         }
-        return file.getName().equals(filterParam.getName());
+        return (file.getName().split("\\.")[0]).equals(filterParam.getName());
     }
 }
